@@ -1732,7 +1732,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/nds4ios/support/NDS4iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = me.totlol.tmp.nds4ios;
+				PRODUCT_BUNDLE_IDENTIFIER = testing.nds4ios;
 				PRODUCT_NAME = nds4ios;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1770,7 +1770,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/nds4ios/support/NDS4iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = me.totlol.tmp.nds4ios;
+				PRODUCT_BUNDLE_IDENTIFIER = testing.nds4ios;
 				PRODUCT_NAME = nds4ios;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
