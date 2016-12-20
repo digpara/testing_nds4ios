@@ -40,6 +40,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *vibrateLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *vibrateSwitch;
 
+@property (weak, nonatomic) IBOutlet UISwitch *disableTouchSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *disablePadSwitch;
+
 @property (weak, nonatomic) IBOutlet UILabel *dropboxLabel;
 
 @property (weak, nonatomic) IBOutlet UISwitch *dropboxSwitch;
@@ -166,6 +169,10 @@
         [defaults setInteger:frameSkip forKey:@"frameSkip"];
     } else if (sender == self.disableSoundSwitch) {
         [defaults setBool:self.disableSoundSwitch.on forKey:@"disableSound"];
+    } else if (sender == self.disablePadSwitch) {
+        [defaults setBool:self.disablePadSwitch.on forKey:@"disablePad"];
+    } else if (sender == self.disableTouchSwitch) {
+        [defaults setBool:self.disableTouchSwitch.on forKey:@"disableTouch"];
     } else if (sender == self.showPixelGridSwitch) {
         [defaults setBool:self.showPixelGridSwitch.on forKey:@"showPixelGrid"];
     } else if (sender == self.controlPadStyleControl) {
@@ -220,6 +227,9 @@
     
     self.dropboxSwitch.on = [defaults boolForKey:@"enableDropbox"];
     self.cellularSwitch.on = [defaults boolForKey:@"enableDropboxCellular"];
+    
+    self.disablePadSwitch.on = [defaults boolForKey:@"disablePad"];
+    self.disableTouchSwitch.on = [defaults boolForKey:@"disableTouch"];
     
     if ([defaults boolForKey:@"enableDropbox"] == true) {
         self.accountLabel.text = NSLocalizedString(@"Linked", @"");

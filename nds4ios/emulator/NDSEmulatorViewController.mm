@@ -200,6 +200,14 @@ const float textureVert[] =
     glkView[0].frame = [self rectForScreenView:0];
     glkView[1].frame = [self rectForScreenView:1];
     self.snapshotView.frame = glkView[extWindow?1:0].frame;
+    
+    BOOL disablePad = [defaults boolForKey:@"disablePad"];
+    if (disablePad) {
+        self.controllerContainerView.hidden = YES;
+    } else {
+        self.controllerContainerView.hidden = NO;
+    }
+    
     if (isLandscape) {
         self.dismissButton.frame = CGRectMake((self.view.bounds.size.width + self.view.bounds.size.height/1.5)/2 + 8, 8, 28, 28);
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
@@ -590,7 +598,11 @@ FOUNDATION_EXTERN void AudioServicesPlaySystemSoundWithVibration(unsigned long, 
         CGAffineTransform t = CGAffineTransformConcat(CGAffineTransformMakeTranslation(0, -glkView[0].bounds.size.height/2), CGAffineTransformMakeScale(256/glkView[0].bounds.size.width, 192/(glkView[0].bounds.size.height/2)));
         point = CGPointApplyAffineTransform(point, t);
     }
-    EMU_touchScreenTouch(point.x, point.y);
+    
+    BOOL disableTouch = [[NSUserDefaults standardUserDefaults] boolForKey:@"disableTouch"];
+    if (!disableTouch) {
+        EMU_touchScreenTouch(point.x, point.y);
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -605,7 +617,10 @@ FOUNDATION_EXTERN void AudioServicesPlaySystemSoundWithVibration(unsigned long, 
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    EMU_touchScreenRelease();
+    BOOL disableTouch = [[NSUserDefaults standardUserDefaults] boolForKey:@"disableTouch"];
+    if (!disableTouch) {
+        EMU_touchScreenRelease();
+    }
 }
 
 - (IBAction)hideEmulator:(id)sender
